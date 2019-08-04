@@ -19,11 +19,11 @@
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.0.0",
+    "@nuxtjs/vuetify": "^1.1.1",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
-    "vue-jest": "^3.0.3",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "vue-jest": "^3.0.3"
   }
 }
