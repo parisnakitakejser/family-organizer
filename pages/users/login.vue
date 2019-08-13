@@ -35,7 +35,6 @@
     export default {
       name: "users-login",
       layout: 'login',
-      middleware: ['auth-not-required'],
 
       methods: {
         userAuthLogin () {

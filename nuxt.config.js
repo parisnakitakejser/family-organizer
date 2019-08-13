@@ -53,7 +53,9 @@ module.exports = {
   },
 
   router: {
-    middleware: ['auth']
+    middleware: [
+      'systemStatusVerify'
+    ]
   },
   /*
   ** Build configuration

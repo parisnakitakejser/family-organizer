@@ -37,6 +37,12 @@ async function start () {
     ctx.body = {foo: 'user post method'}
   });
 
+  apiRouter.get('/system/status-verify', async ctx => {
+    ctx.body = {
+      status: false
+    }
+  });
+
   app.use(apiRouter.routes());
   app.use(apiRouter.allowedMethods());
 
