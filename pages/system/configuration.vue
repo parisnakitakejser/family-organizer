@@ -15,8 +15,15 @@
                 </v-toolbar>
 
                 <v-card-text>
-                  <v-form>
-                    <v-text-field label="Your family name" type="text"></v-text-field>
+                  <v-form ref="form" v-model="valid">
+                    <v-text-field
+                      label="Your family name"
+                      type="text"
+                      v-model="familyname"
+                      :rules="validation.familyname"
+                      :counter="90"
+                      required
+                    ></v-text-field>
 
                     <v-row>
                       <v-col cols="12" md="4">
@@ -63,14 +70,19 @@
                       </v-alert>
                     </template>
 
-                    <v-checkbox v-model="agree" label="Do you agree and ready to setup this family?"></v-checkbox>
+                    <v-checkbox
+                      v-model="agree"
+                      label="Do you agree and ready to setup this family?"
+                      :rules="[v => !!v || 'Do you agree?']"
+                      required
+                    ></v-checkbox>
                   </v-form>
                 </v-card-text>
 
                 <v-card-actions>
                   <v-spacer></v-spacer>
 
-                  <v-btn color="primary" :disabled="(agree && (family_data.adults) > 0 ? false : true)" @click="makeConfiguration">
+                  <v-btn color="primary" :disabled="!valid" @click="makeConfiguration">
                     Complete my family configuration
                   </v-btn>
                 </v-card-actions>
@@ -84,6 +96,8 @@
 </template>
 
 <script>
+  import validation from '~/assets/javascript/validation';
+
   import adults from "../../components/system-configuration/adults";
   import childs from "../../components/system-configuration/childs";
   import pets from "../../components/system-configuration/pets";
@@ -97,7 +111,10 @@
         },
         data () {
           return {
+            validation: validation,
+            valid: true,
             agree: false,
+            familyname: '',
             family_data: {
               adults: 1,
               childs: 0,
@@ -108,7 +125,14 @@
 
       methods: {
         makeConfiguration () {
-          console.log('press the btn - makeConfiguration')
+            // (agree && (family_data.adults) > 0 ? false : true)
+
+            if (this.$refs.form.validate()) {
+                console.log('press the btn - makeConfiguration')
+            } else {
+                console.log('Validate not currect!')
+            }
+
         }
       }
     }

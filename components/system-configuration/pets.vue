@@ -9,6 +9,8 @@
           label="Name"
           hint="What are you pets name"
           type="text"
+          :rules="validation.pet.name"
+          required
         ></v-text-field>
       </v-col>
       <v-col cols="12" md="4">
@@ -16,6 +18,8 @@
           label="Which pet?"
           hint="Select the pet eg. dog or cat"
           :items="pet.type"
+          :rules="validation.pet.type"
+          required
         ></v-select>
       </v-col>
       <v-col cols="12" md="4">
@@ -23,6 +27,8 @@
           label="Gender"
           hint="Do you know the gender of you pet?"
           :items="pet.gender"
+          :rules="validation.gender"
+          required
         ></v-select>
       </v-col>
       <v-col cols="12" md="4">
@@ -30,6 +36,8 @@
           label="Birthday"
           hint="When have you pet birthday"
           type="date"
+          :rules="validation.birthday"
+          required
         ></v-text-field>
       </v-col>
     </v-row>
@@ -40,6 +48,7 @@
 </template>
 
 <script>
+  import validation from '~/assets/javascript/validation';
   import pet from '~/assets/javascript/pet';
 
     export default {
@@ -52,6 +61,7 @@
         },
         data () {
             return {
+                validation: validation,
                 pet: pet
             }
         }

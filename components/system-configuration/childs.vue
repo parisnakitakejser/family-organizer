@@ -9,6 +9,8 @@
           label="Name"
           hint="What is the full name?"
           type="text"
+          :rules="validation.fullname"
+          required
         ></v-text-field>
       </v-col>
 
@@ -17,6 +19,8 @@
           label="Gender"
           hint="Select adult gender eg. female"
           :items="human.gender"
+          :rules="validation.gender"
+          required
         ></v-select>
       </v-col>
 
@@ -25,6 +29,8 @@
           label="Birthday"
           hint="When is the birthday"
           type="date"
+          :rules="validation.birthday"
+          required
         ></v-text-field>
       </v-col>
 
@@ -33,6 +39,8 @@
           label="Relationship"
           hint="What is the relationship for this person?"
           :items="human.relationship"
+          :rules="validation.relationship"
+          required
         ></v-select>
       </v-col>
 
@@ -40,6 +48,8 @@
         <v-text-field
           label="E-mail"
           hint="Family member will received mail with login info"
+          :rules="validation.email"
+          required
         ></v-text-field>
       </v-col>
     </v-row>
@@ -50,6 +60,7 @@
 </template>
 
 <script>
+    import validation from '~/assets/javascript/validation';
     import human from '~/assets/javascript/human';
 
     export default {
@@ -62,6 +73,7 @@
         },
         data () {
             return {
+                validation: validation,
                 human: human
             }
         }
