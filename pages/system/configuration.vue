@@ -19,7 +19,8 @@
                     <v-text-field
                       label="Your family name"
                       type="text"
-                      v-model="familyname"
+                      @input="updateFamilyData('familyname', $event)"
+                      :value="family_data.data.familyname"
                       :rules="validation.familyname"
                       :counter="90"
                       required
@@ -29,7 +30,8 @@
                       <v-col cols="12" md="4">
                         <v-text-field
                           label="Adults"
-                          v-model="family_data.adults"
+                          @input="updateFamilyNum('adults', $event)"
+                          :value="family_data.adults"
                           hint="How many people are over 18 years?"
                           type="number"
                           min="0"
@@ -38,7 +40,8 @@
                       <v-col cols="12" md="4">
                         <v-text-field
                           label="Childs"
-                          v-model="family_data.childs"
+                          @input="updateFamilyNum('childs', $event)"
+                          :value="family_data.childs"
                           hint="How many people are below 18 years?"
                           type="number"
                           min="0"
@@ -47,7 +50,8 @@
                       <v-col cols="12" md="4">
                         <v-text-field
                           label="Pets"
-                          v-model="family_data.pets"
+                          @input="updateFamilyNum('pets', $event)"
+                          :value="family_data.pets"
                           hint="How many lovely pets did you own?"
                           type="number"
                           min="0"
@@ -96,6 +100,8 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   import validation from '~/assets/javascript/validation';
 
   import adults from "../../components/system-configuration/adults";
@@ -109,26 +115,42 @@
             childs,
             pets
         },
+
+        computed: {
+          ...mapState({
+              family_data: state => state.configuration.family_data
+          })
+        },
+
         data () {
           return {
             validation: validation,
             valid: true,
             agree: false,
-            familyname: '',
-            family_data: {
-              adults: 1,
-              childs: 0,
-              pets: 0
-            }
           }
         },
 
       methods: {
+        updateFamilyNum(fam_type, e) {
+          this.$store.commit('configuration/update', {
+              'field': fam_type,
+              'value': e
+          })
+        },
+
+        updateFamilyData(field, e) {
+            this.$store.commit('configuration/updateData', {
+                'field': field,
+                'value': e
+            })
+        },
+
         makeConfiguration () {
             // (agree && (family_data.adults) > 0 ? false : true)
 
             if (this.$refs.form.validate()) {
                 console.log('press the btn - makeConfiguration')
+                console.log(this.family_data)
             } else {
                 console.log('Validate not currect!')
             }

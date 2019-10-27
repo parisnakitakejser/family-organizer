@@ -17,7 +17,8 @@
     "cross-env": "^5.2.0",
     "koa": "^2.10.0",
     "koa-router": "^7.4.0",
-    "nuxt": "^2.10.1"
+    "nuxt": "^2.10.1",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.9.0",
