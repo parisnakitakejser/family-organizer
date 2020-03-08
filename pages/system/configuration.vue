@@ -149,6 +149,32 @@
             // (agree && (family_data.adults) > 0 ? false : true)
 
             if (this.$refs.form.validate()) {
+                let members = [];
+                let pets = [];
+
+                this.family_data.data.adults_list.forEach((val, inx) => {
+                  members.push(val);
+                });
+
+                this.family_data.data.childs_list.forEach((val, inx) => {
+                  members.push(val);
+                });
+
+                this.family_data.data.pets_list.forEach((val, inx) => {
+                  pets.push(val);
+                });
+
+                this.$axios.put(process.env.API_SERVER +'system/configuration/completed', {
+                  name: this.family_data.data.familyname,
+                  members: members,
+                  pets: pets
+                }).then((resp) => {
+                  this.$router.push({'name': 'users-login'});
+                }).catch((err) => {
+                  console.log('we hit a error!');
+                  console.log(err);
+                });
+
                 console.log('press the btn - makeConfiguration')
                 console.log(this.family_data)
             } else {

@@ -6,12 +6,12 @@
     <v-row :key="'pets-'+ n">
       <v-col cols="12" md="4">
         <v-text-field
-          label="Name"
-          hint="What are you pets name"
+          label="Fullname"
+          hint="What are you pets fullname"
           type="text"
           :rules="validation.pet.name"
-          @input="updateField('name', n, $event)"
-          :value="getData('name', n)"
+          @input="updateField('fullname', n, $event)"
+          :value="getData('fullname', n)"
           required
         ></v-text-field>
       </v-col>
