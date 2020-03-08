@@ -34,9 +34,11 @@ module.exports = {
   /*
   ** Nuxt.js dev-modules
   */
-  devModules: [
+  buildModules: [
     '@nuxtjs/vuetify',
+    ['@nuxtjs/dotenv', {path: '../', systemvars: true}]
   ],
+
   /*
   ** Nuxt.js modules
   */
@@ -45,6 +47,7 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
   ],
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
